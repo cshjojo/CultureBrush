@@ -4,97 +4,97 @@
       <no-ssr>
         <vimeo-player ref="player" :video-id="video.vimeo_id" player-width="1000" player-height="640"/>
       </no-ssr>
-      <v-overlay
-        opacity="1"
-        :value="overlay"
-        absolute
-      >
-        <v-layout style="width: 1000px;">
-          <v-col cols="6" class="pa-0">
-            <v-row
-              class="ma-0"
-              align="center"
-              justify="center"
-              style="width:640px;height: 600px;"
-            >
-              <v-card class="rec-card fill-height">
-                <v-img
-                  class="white--text fill-height align-end"
-                  :src="video.main_image"
-                  width="640"
-                >
-                  <v-card-title></v-card-title>
+<!--      <v-overlay-->
+<!--        opacity="1"-->
+<!--        :value="overlay"-->
+<!--        absolute-->
+<!--      >-->
+<!--        <v-layout style="width: 1000px;">-->
+<!--          <v-col cols="6" class="pa-0">-->
+<!--            <v-row-->
+<!--              class="ma-0"-->
+<!--              align="center"-->
+<!--              justify="center"-->
+<!--              style="width:640px;height: 600px;"-->
+<!--            >-->
+<!--              <v-card class="rec-card fill-height">-->
+<!--                <v-img-->
+<!--                  class="white&#45;&#45;text fill-height align-end"-->
+<!--                  :src="video.main_image"-->
+<!--                  width="640"-->
+<!--                >-->
+<!--                  <v-card-title></v-card-title>-->
 
-                  <v-card-text class="text--primary">
-                  </v-card-text>
-                </v-img>
-              </v-card>
-            </v-row>
-          </v-col>
-          <v-col cols="6" class="pa-0" style="z-index: 4;">
-            <v-row
-              class="ma-0"
-              align="center"
-              style="width: 100%; height: 600px; color: white;"
-            >
-              <v-col cols="3" class="fill-height back-gradient">
-              </v-col>
-              <v-col cols="9" class="fill-height black">
-                <v-row class="mb-4" justify="center">
-                  <h1 class="my-4">{{video.title}}</h1>
-                </v-row>
-                <v-row class="mx-3 text-left" justify="start" style="max-height: 250px;overflow-y: auto;word-break: break-all;">
-                  <p v-html="video.description"></p>
-                </v-row>
-                <v-row class="mx-3" justify="end">
-                  <p class="font-weight-medium font-italic ma-2" style="font-size: 16px">
-                    <v-icon>mdi-play</v-icon>
-                    {{ Math.floor(video.length/60) +':'+ (((video.length%60) &lt; 10)?'0'+video.length%60:video.length%60) }}
-                  </p>
-                </v-row>
-                <v-row class="mx-3 grey--text" justify="start">
-                  <h3>Category</h3>
-                </v-row>
-                <v-row class="mx-6" justify="start">
-                  <p>{{(video.category1)? video.category1.name : ""}}</p>
-                  <p>{{(video.category2)? "&nbsp;"+video.category2.name : ""}}</p>
-                  <p>{{(video.category3)? "&nbsp;"+video.category3.name : ""}}</p>
-                </v-row>
-                <v-row class="mx-3 grey--text" justify="start">
-                  <h3>Awards</h3>
-                </v-row>
-                <v-row class="mx-6" justify="start">
-                  <template v-for="(award, i) in video.Video_Awards">
-                    <p :key="i">{{ (i == 0)? award.name : ', '+award.name }}</p>
-                  </template>
-                </v-row>
-                <v-row class="mx-3 grey--text" justify="start">
-                  <h3>More</h3>
-                </v-row>
-                <v-row class="mx-6" justify="start">
-                  <template v-for="(link, i) in video.Video_Links">
-                    <p :key="i">{{ (i == 0)? link.url : ', '+link.url }}</p>
-                  </template>
-                </v-row>
-                <v-row class="my-2" justify="end">
-                  <v-btn @click="playVideo"
-                         rounded
-                         color="primary"
-                         dark
-                         class="mr-5"
-                         style="position: absolute; bottom: 20px;"
-                  >
-                    <v-icon style="color: white">
-                      mdi-play
-                    </v-icon>
-                    Play
-                  </v-btn>
-                </v-row>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-layout>
-      </v-overlay>
+<!--                  <v-card-text class="text&#45;&#45;primary">-->
+<!--                  </v-card-text>-->
+<!--                </v-img>-->
+<!--              </v-card>-->
+<!--            </v-row>-->
+<!--          </v-col>-->
+<!--          <v-col cols="6" class="pa-0" style="z-index: 4;">-->
+<!--            <v-row-->
+<!--              class="ma-0"-->
+<!--              align="center"-->
+<!--              style="width: 100%; height: 600px; color: white;"-->
+<!--            >-->
+<!--              <v-col cols="3" class="fill-height back-gradient">-->
+<!--              </v-col>-->
+<!--              <v-col cols="9" class="fill-height black">-->
+<!--                <v-row class="mb-4" justify="center">-->
+<!--                  <h1 class="my-4">{{video.title}}</h1>-->
+<!--                </v-row>-->
+<!--                <v-row class="mx-3 text-left" justify="start" style="max-height: 250px;overflow-y: auto;word-break: break-all;">-->
+<!--                  <p v-html="video.description"></p>-->
+<!--                </v-row>-->
+<!--                <v-row class="mx-3" justify="end">-->
+<!--                  <p class="font-weight-medium font-italic ma-2" style="font-size: 16px">-->
+<!--                    <v-icon>mdi-play</v-icon>-->
+<!--                    {{ Math.floor(video.length/60) +':'+ (((video.length%60) &lt; 10)?'0'+video.length%60:video.length%60) }}-->
+<!--                  </p>-->
+<!--                </v-row>-->
+<!--                <v-row class="mx-3 grey&#45;&#45;text" justify="start">-->
+<!--                  <h3>Category</h3>-->
+<!--                </v-row>-->
+<!--                <v-row class="mx-6" justify="start">-->
+<!--                  <p>{{(video.category1)? video.category1.name : ""}}</p>-->
+<!--                  <p>{{(video.category2)? "&nbsp;"+video.category2.name : ""}}</p>-->
+<!--                  <p>{{(video.category3)? "&nbsp;"+video.category3.name : ""}}</p>-->
+<!--                </v-row>-->
+<!--                <v-row class="mx-3 grey&#45;&#45;text" justify="start">-->
+<!--                  <h3>Awards</h3>-->
+<!--                </v-row>-->
+<!--                <v-row class="mx-6" justify="start">-->
+<!--                  <template v-for="(award, i) in video.Video_Awards">-->
+<!--                    <p :key="i">{{ (i == 0)? award.name : ', '+award.name }}</p>-->
+<!--                  </template>-->
+<!--                </v-row>-->
+<!--                <v-row class="mx-3 grey&#45;&#45;text" justify="start">-->
+<!--                  <h3>More</h3>-->
+<!--                </v-row>-->
+<!--                <v-row class="mx-6" justify="start">-->
+<!--                  <template v-for="(link, i) in video.Video_Links">-->
+<!--                    <p :key="i">{{ (i == 0)? link.url : ', '+link.url }}</p>-->
+<!--                  </template>-->
+<!--                </v-row>-->
+<!--                <v-row class="my-2" justify="end">-->
+<!--                  <v-btn @click="playVideo"-->
+<!--                         rounded-->
+<!--                         color="primary"-->
+<!--                         dark-->
+<!--                         class="mr-5"-->
+<!--                         style="position: absolute; bottom: 20px;"-->
+<!--                  >-->
+<!--                    <v-icon style="color: white">-->
+<!--                      mdi-play-->
+<!--                    </v-icon>-->
+<!--                    Play-->
+<!--                  </v-btn>-->
+<!--                </v-row>-->
+<!--              </v-col>-->
+<!--            </v-row>-->
+<!--          </v-col>-->
+<!--        </v-layout>-->
+<!--      </v-overlay>-->
     </v-row>
   </v-container>
 </template>

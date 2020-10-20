@@ -27,7 +27,7 @@
                   color: white;
                   z-index: 2;
                   cursor: pointer;"
-          @click.stop="openVideo()"
+          @click.stop="_openVideo"
         >
           <v-row class="fill-height" align="center" justify="center">
             <v-btn icon x-large class="align-self-center" align="center" justify="center">
@@ -59,7 +59,7 @@
 <script>
   import Player from '@vimeo/player'
   export default {
-    props: ['video'],
+    props: ['video', 'openVideo'],
     data () {
       return {
         fullPath: '',
@@ -77,11 +77,11 @@
       }
     },
     methods: {
-      openVideo: function () {
+      _openVideo: function () {
         if(this.$route.fullPath.startsWith('/manage')){
           this.$router.push({path: `/manage/video/edit/${this.copied_video.id}`})
         }else{
-          this.$router.push({path: `/video/${this.copied_video.id}`})
+          this.openVideo(this.copied_video)
         }
       },
     },
@@ -90,6 +90,7 @@
       fetch('http://vimeo.com/api/v2/video/'+_video.vimeo_id+'/json').then(res => res.json())
         .then(data => {
           _video.main_image = (_video.main_image)? this.$media_url + this.video.main_image : data[0].thumbnail_medium;
+          if(!_video.description)_video.description = data[0].description;
           this.copied_video = Object.assign(this.copied_video, _video,{length: data[0].duration});
         });
     }
