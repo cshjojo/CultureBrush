@@ -92,13 +92,15 @@
           <no-ssr>
             <vimeo-player ref="player" :video-id="vimeoId" player-width="480" player-height="240"/>
           </no-ssr>
+        </v-row>
+        <v-row class="px-10" align="center" justify="center">
           <v-text-field
             v-model="vimeo_inserted"
             label="Vimeo ID or URL"
             clearable
             dark
           ></v-text-field>
-          <v-btn rounded color="primary" dark @click.stop="loadVideo">Insert</v-btn>
+          <v-btn icon color="white" fab large @click.stop="loadVideo"><v-icon>mdi-archive-arrow-up-outline</v-icon></v-btn>
         </v-row>
         <v-row>
           <h4 class="text-left ml-2">Category</h4>
@@ -356,7 +358,7 @@ export default {
               return JSON.parse(text);
             });
           }).then((result) => { // result.name, url
-            return this.createVideo([`title:"${this.title}", url:"${this.url}", vimeo_id:${this.vimeoId}, desc:"${this.description}",
+            return this.createVideo([`title:"${this.title}", url:"${this.url}", vimeo_id:${this.vimeoId}, desc:"${this.description.replace(/\n/gi, '<br>')}",
              main_image:"${result.name}", awards:${JSON.stringify(JSON.stringify(this.awards))}, links:${JSON.stringify(JSON.stringify(this.links))}`+categories])
           }).then((result) => {
             if(result){
@@ -364,7 +366,7 @@ export default {
             }
           })
         }else{
-          let result = await this.createVideo([`title:"${this.title}", url:"${this.url}", vimeo_id:${this.vimeoId}, desc:"${this.description}",
+          let result = await this.createVideo([`title:"${this.title}", url:"${this.url}", vimeo_id:${this.vimeoId}, desc:"${this.description.replace(/\n/gi, '<br>')}",
           awards:${JSON.stringify(JSON.stringify(this.awards))}, links:${JSON.stringify(JSON.stringify(this.links))}`+categories])
           if(result)this.linkUrl('/manage/video');
         }

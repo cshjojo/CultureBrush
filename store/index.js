@@ -176,15 +176,7 @@ export const actions = {
         query: `{
                     video(${query.join(',')}) {
                       id title description vimeo_id main_image
-                      category1{
-                        id name group
-                      }
-                      category2{
-                        id name group
-                      }
-                      category3{
-                        id name group
-                      }
+                      category1 category2 category3
                       Video_Awards {
                         id name
                       }
@@ -204,15 +196,7 @@ export const actions = {
         query: `{
                   videos {
                     id title description vimeo_id main_image
-                    category1{
-                      id name group
-                    }
-                    category2{
-                      id name group
-                    }
-                    category3{
-                      id name group
-                    }
+                    category1 category2 category3
                     Video_Awards {
                       id name
                     }

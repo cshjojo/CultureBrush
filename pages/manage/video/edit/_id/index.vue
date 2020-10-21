@@ -92,13 +92,15 @@
           <no-ssr>
             <vimeo-player ref="player" :video-id="video.vimeo_id" player-width="480" player-height="240"/>
           </no-ssr>
+        </v-row>
+        <v-row class="px-10" align="center" justify="center">
           <v-text-field
-            v-model="vimeoId_inserted"
-            label="Vimeo ID"
+            v-model="vimeo_inserted"
+            label="Vimeo ID or URL"
             clearable
             dark
           ></v-text-field>
-          <v-btn rounded color="primary" dark @click.stop="video.vimeo_id = vimeoId_inserted">Insert</v-btn>
+          <v-btn icon color="white" fab large @click.stop="loadVideo"><v-icon>mdi-archive-arrow-up-outline</v-icon></v-btn>
         </v-row>
         <v-row>
           <h4 class="text-left ml-2">Category</h4>
@@ -108,7 +110,7 @@
             <v-select
               :items="categories.filter(i => i.group == 1)"
               item-text="name"
-              return-object
+              item-value="id"
               v-model="video.category1"
               label="Category 1"
               dark
@@ -118,7 +120,7 @@
             <v-select
               :items="categories.filter(i => i.group == 2)"
               item-text="name"
-              return-object
+              item-value="id"
               v-model="video.category2"
               label="Category 2"
               dark
@@ -128,7 +130,7 @@
             <v-select
               :items="categories.filter(i => i.group == 3)"
               item-text="name"
-              return-object
+              item-value="id"
               v-model="video.category3"
               label="Category 3"
               dark
@@ -300,7 +302,7 @@
         rules: {
           required: value => !!value || 'Required.'
         },
-        vimeoId_inserted: null,
+        vimeo_inserted: null,
         image_file: null,
         deleteDialog: false,
         categories: [],
@@ -322,8 +324,16 @@
       linkUrl: function (url) {
         this.$router.push({path: url})
       },
-      loadVimeobyId: function () {
-        this.$refs.player.update(this.vimeoId);
+      loadVideo: function () {
+        if(this.vimeo_inserted){
+          if(this.vimeo_inserted.indexOf('/') > -1){ // url
+            if(this.vimeo_inserted.indexOf('vimeo') < 0)return alert('not vimeo url');
+            this.url = this.vimeo_inserted;
+            this.video.vimeo_id = this.vimeo_inserted.substring(this.vimeo_inserted.lastIndexOf('/')+1);
+          }else{ // id
+            this.video.vimeo_id = this.vimeo_inserted
+          }
+        }
       },
       changeImage: function(e){
         this.video.main_image = (this.image_file)? URL.createObjectURL(this.image_file) : "/image/empty.png";
@@ -427,7 +437,11 @@
       }
       copied_video.Video_Awards.map(i => Object.assign(i, { state: '' }));
       copied_video.Video_Links.map(i => Object.assign(i, { state: '' }));
-      this.vimeoId_inserted = copied_video.vimeo_id;
+      this.vimeo_inserted = copied_video.vimeo_id;
+      copied_video.description = copied_video.description.replace(/<br>/gi, '\n');
+      copied_video.category1 = copied_video.category1+'';
+      copied_video.category2 = copied_video.category2+'';
+      copied_video.category3 = copied_video.category3+'';
       this.video = Object.assign(this.video, copied_video);
     }
   }

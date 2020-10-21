@@ -180,11 +180,7 @@
                 <v-img src="/image/login_image.png"></v-img>
               </v-row>
               <v-row class="ma-4" justify="center">
-                <p>회원 가입을 하면 ID@hints.or.kr<br>
-                  형태로 구글 계정이 생성됩니다.<br>
-                  꼭 로그인 하실 때는<br>
-                  @hints.or.kr 로 해야 합니다.<br>
-                  (@gmail.com 으로 하면 안됩니다.)</p>
+                <p></p>
               </v-row>
               <v-row class="my-6" justify="center">
                 <v-col cols="8" justify="center">

@@ -220,9 +220,9 @@ export default {
   },
   mounted: async function () {
     let copied_list = await this.getVideos();
-    this.recommended_videos = copied_list.filter(i => i.category3 && i.category3.id === '12');
-    this.continue_videos = copied_list.filter(i => i.category3 && i.category3.id === '13');
-    this.recent_videos = copied_list.filter(i => i.category3 && i.category3.id === '14');
+    this.recommended_videos = copied_list.filter(i => i.category3 === 17);
+    this.continue_videos = copied_list.filter(i => i.category3 === 16);
+    this.recent_videos = copied_list.filter(i => i.category3 === 15);
   }
 }
 </script>
