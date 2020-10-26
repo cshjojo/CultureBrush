@@ -1,18 +1,30 @@
 <template>
   <v-container class="pa-4 text-center">
     <v-row style="width: 100%;">
-      <h2 class="text-left v-size--large">Continue Watching</h2>
-    </v-row>
-    <v-row class="fill-height mb-3" align="center" justify="center" style="width: 1250px;">
-      <video_preview v-for="(item, i) in continue_videos"
-             :key="i" :video="item" :openVideo="openVideo" class="ma-2 mx-5" style="width: 200px; height: 150px;"/>
-    </v-row>
-    <v-row style="width: 100%;">
-      <h2 class="text-left v-size--large">Recommended for you</h2>
+      <h2 class="text-left v-size--large">{{category_title_1.name}}</h2>
     </v-row>
     <v-row class="mb-4" style="width: 1250px;" justify="center">
       <div class="px-4" align="center" justify="center" style="position:relative; width: 1200px;">
-        <swiper :options="swiperOption">
+        <swiper :options="swiperOption1">
+          <swiper-slide
+            v-for="(item, i) in continue_videos"
+            :key="i"
+          >
+            <video_preview :video="item" :openVideo="openVideo" style=" height: 150px;" />
+          </swiper-slide>
+        </swiper>
+        <div id="swiper-button-prev1" class="swiper-button-prev ml-4" slot="button-prev" style="color: white;z-index: 4;"></div>
+        <div id="swiper-button-next1" class="swiper-button-next mr-4" slot="button-next" style="color: white;z-index: 4;"></div>
+        <div class="fill-height ml-4" style="position: absolute; left:0;top:0; width: 50px;background: black; opacity: 0.6;z-index: 3;"></div>
+        <div class="fill-height mr-4" style="position: absolute; top:0;right:0; width: 50px;background: black; opacity: 0.6;z-index: 3;"></div>
+      </div>
+    </v-row>
+    <v-row style="width: 100%;">
+      <h2 class="text-left v-size--large">{{category_title_2.name}}</h2>
+    </v-row>
+    <v-row class="mb-4" style="width: 1250px;" justify="center">
+      <div class="px-4" align="center" justify="center" style="position:relative; width: 1200px;">
+        <swiper :options="swiperOption2">
           <swiper-slide
             v-for="(item, i) in recommended_videos"
             :key="i"
@@ -20,18 +32,30 @@
             <video_preview :video="item" :openVideo="openVideo" style=" height: 150px;" />
           </swiper-slide>
         </swiper>
-        <div class="swiper-button-prev ml-4" slot="button-prev" style="color: white;z-index: 4;"></div>
-        <div class="swiper-button-next mr-4" slot="button-next" style="color: white;z-index: 4;"></div>
+        <div id="swiper-button-prev2" class="swiper-button-prev ml-4" slot="button-prev" style="color: white;z-index: 4;"></div>
+        <div id="swiper-button-next2" class="swiper-button-next mr-4" slot="button-next" style="color: white;z-index: 4;"></div>
         <div class="fill-height ml-4" style="position: absolute; left:0;top:0; width: 50px;background: black; opacity: 0.6;z-index: 3;"></div>
         <div class="fill-height mr-4" style="position: absolute; top:0;right:0; width: 50px;background: black; opacity: 0.6;z-index: 3;"></div>
       </div>
     </v-row>
     <v-row style="width: 100%;">
-      <h2 class="text-left v-size--large">Recently Videos</h2>
+      <h2 class="text-left v-size--large">{{category_title_3.name}}</h2>
     </v-row>
-    <v-row class="fill-height" align="center" justify="center" style="width: 1250px;">
-      <video_preview v-for="(item, i) in recent_videos"
-                     :key="i" :video="item" :openVideo="openVideo" class="ma-2 mx-5" style="width: 200px; height: 150px;"/>
+    <v-row class="mb-4" style="width: 1250px;" justify="center">
+      <div class="px-4" align="center" justify="center" style="position:relative; width: 1200px;">
+        <swiper :options="swiperOption3">
+          <swiper-slide
+            v-for="(item, i) in recent_videos"
+            :key="i"
+          >
+            <video_preview :video="item" :openVideo="openVideo" style=" height: 150px;" />
+          </swiper-slide>
+        </swiper>
+        <div id="swiper-button-prev3" class="swiper-button-prev ml-4" slot="button-prev" style="color: white;z-index: 4;"></div>
+        <div id="swiper-button-next3" class="swiper-button-next mr-4" slot="button-next" style="color: white;z-index: 4;"></div>
+        <div class="fill-height ml-4" style="position: absolute; left:0;top:0; width: 50px;background: black; opacity: 0.6;z-index: 3;"></div>
+        <div class="fill-height mr-4" style="position: absolute; top:0;right:0; width: 50px;background: black; opacity: 0.6;z-index: 3;"></div>
+      </div>
     </v-row>
 
     <v-overlay
@@ -151,17 +175,35 @@ export default {
   },
   data () {
     return {
-      transparent: 'rgba(255, 255, 255, 0)',
+      category_title_1: { name: 'Continue Watching' },
+      category_title_2: { name: 'Recommended for you' },
+      category_title_3: { name: 'Recently Videos' },
       model: null,
       continue_videos: [],
       recommended_videos: [],
       recent_videos: [],
-      swiperOption: {
+      swiperOption1: {
         slidesPerView: 5,
         spaceBetween: 30,
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '#swiper-button-next1',
+          prevEl: '#swiper-button-prev1'
+        }
+      },
+      swiperOption2: {
+        slidesPerView: 5,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: '#swiper-button-next2',
+          prevEl: '#swiper-button-prev2'
+        }
+      },
+      swiperOption3: {
+        slidesPerView: 5,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: '#swiper-button-next3',
+          prevEl: '#swiper-button-prev3'
         }
       },
       overlay: false,
@@ -215,10 +257,18 @@ export default {
     },
     ...mapActions({
       setUser: 'setUser',
-      getVideos: 'getVideos'
+      getVideos: 'getVideos',
+      getCategories: 'getCategories'
     })
   },
   mounted: async function () {
+    // recommended: 17, continue: 16, recent: 15
+    // set category title
+    let categories = await this.getCategories();
+    this.category_title_1 = categories.find(i => i.id === '16');
+    this.category_title_2 = categories.find(i => i.id === '17');
+    this.category_title_3 = categories.find(i => i.id === '15');
+
     let copied_list = await this.getVideos();
     this.recommended_videos = copied_list.filter(i => i.category3 === 17);
     this.continue_videos = copied_list.filter(i => i.category3 === 16);

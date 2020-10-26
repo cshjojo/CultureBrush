@@ -116,7 +116,7 @@
                 <v-icon>mdi-logout</v-icon>
               </v-list-item-action>
               <v-list-item-content>
-                <v-list-item-title>Sing Out</v-list-item-title>
+                <v-list-item-title>Sign Out</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-list-item v-if="user.is_admin" to="/manage/video" active-class="navigation-active">
@@ -293,7 +293,7 @@
         window.gapi.client.init({
           discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/sheets/v4/rest'],
           clientId: this.$GOOGLE_KEY.clientID,
-          scope: 'https://www.googleapis.com/auth/drive'
+          scope: 'https://www.googleapis.com/auth/userinfo.profile'
         }).then(function () {
           window.gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus)
           updateSigninStatus(window.gapi.auth2.getAuthInstance().isSignedIn.get())
